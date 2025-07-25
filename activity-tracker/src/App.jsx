@@ -1,7 +1,11 @@
+import ActivityList from './ActivityList';
 import Header from './Header'
 function App() {
   return(
-  <Header />
+    <div>
+    <Header />
+    <ActivityList />
+    </div>
   );
 }
 
