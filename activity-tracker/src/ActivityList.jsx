@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-
-function ActivityList({activity}){
-    const [activities, setActivities] = useState(activity);
+import AddActivityModal from './AddActivityModal';
+function ActivityList({activities, setActivities}){
     return(
         <div>
             <ul>
@@ -22,6 +21,7 @@ function ActivityList({activity}){
                   )
                 }
             </ul>
+            <AddActivityModal activities={activities} setActivities={setActivities}/>
             {/* <div className='add-activity'>
                 <input type="text" placeholder='Name of activity' value={activityName} onChange={updateActivityName}/>
                 <input id="time" value={activityDateTime} onChange={(event)=> updateDateTime(event)} type="datetime-local"/>

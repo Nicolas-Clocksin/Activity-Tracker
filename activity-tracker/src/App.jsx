@@ -34,7 +34,7 @@ function App() {
   return(
     <div className='activity-tracker-container'>
     <Header />
-    <ActivityList activity={activities}/>
+    <ActivityList activities={activities} setActivities={setActivities}/>
     </div>
   );
 }

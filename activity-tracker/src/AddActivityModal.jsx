@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { Modal, Button, Form } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function ActivityList({activity}){
+function AddActivityModal({activitites, setActivities}){
     const [activityName, setActivityName] = useState('');
     const [activityDay, setActivityDay] = useState();
     const [activityMonth, setActivityMonth] = useState();
@@ -8,7 +10,11 @@ function ActivityList({activity}){
     const [activityNote, setActivityNote] = useState('');
     const [activityTime, setActivityTime] = useState();
     const [activityDateTime, setActivityDateTime] = useState('');
-    const [activities, setActivities]= useState(activity);
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     function updateActivityName(event){
        setActivityName(event.target.value)
     }
@@ -44,12 +50,46 @@ function ActivityList({activity}){
         setActivityNote('');
         setActivityTime('');
         setActivityDateTime('');
+        handleClose();
     }
-    return(
-        <div>
-            
-        </div>
-    )
+    return (
+        <>
+          <Button variant="primary" onClick={handleShow}>
+            Launch demo modal
+          </Button>
+    
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Add a New Activity</Modal.Title>
+            </Modal.Header>
+            <Form>
+                <Form.Group className="mb-3" >
+                    <Form.Label>Activity</Form.Label>
+                    <Form.Control type="text" onChange={(event)=>updateActivityName(event)} placeholder="Enter new activity" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" >
+                    <Form.Label>Date/Time</Form.Label>
+                    <Form.Control type="datetime-local" value={activityDateTime} onChange={(event)=> updateDateTime(event)}/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                    <Form.Control as="textarea" rows={3}
+                                  value={activityNote}
+                                  onChange={(event) => updateNote(event)} 
+                                  placeholder="Add notes about the activity" />
+                </Form.Group>
+                </Form>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={addActivity}>
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </>
+      );
 }
 
-export default ActivityList
+export default AddActivityModal
