@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import AddActivityModal from './modals/AddActivityModal';
+import AddActivityModal from '../modals/AddActivityModal';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import EditActivityModal from './modals/EditActivityModal';
+import EditActivityModal from '../modals/EditActivityModal';
 function ActivityList({activities, setActivities}){
   const [editingIndex, setEditingIndex] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);

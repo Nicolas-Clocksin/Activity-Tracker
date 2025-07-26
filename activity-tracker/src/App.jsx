@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-import ActivityList from './ActivityList';
-import Header from './Header'
+import ActivityList from './components/ActivityList';
+import Header from './components/Header'
 function App() {
   const timestamp = Date.now();
   const dateObject = new Date(timestamp);
