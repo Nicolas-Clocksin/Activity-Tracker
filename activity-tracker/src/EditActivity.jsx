@@ -27,7 +27,7 @@ function EditActivityModal({ index, activities, setActivities, show, onClose}) {
           const minute = parseInt(minuteStr, 10);
       
         
-          const date = new Date(activity.year, activity.month - 1, activity.day, hour, minute);
+          const date = new Date(activity.year, activity.month-1, activity.day, hour, minute);
       
          
           const formattedDateTime = date.toISOString().slice(0, 16); 
@@ -41,8 +41,7 @@ function EditActivityModal({ index, activities, setActivities, show, onClose}) {
      function updateDateTime(event){
          const dayTimeSubmitted = event.target.value;
          const date = new Date(dayTimeSubmitted);
- 
-         setActivityDay(date.getDay());
+         setActivityDay(date.getDate());
          setActivityMonth(date.getMonth()+1);
          setActivityYear(date.getFullYear());
          const time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });

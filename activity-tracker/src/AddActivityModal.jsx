@@ -22,7 +22,7 @@ function AddActivityModal({setActivities}){
         const dayTimeSubmitted = event.target.value;
         const date = new Date(dayTimeSubmitted);
 
-        setActivityDay(date.getDay());
+        setActivityDay(date.getDate());
         setActivityMonth(date.getMonth()+1);
         setActivityYear(date.getFullYear());
         const time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -33,7 +33,6 @@ function AddActivityModal({setActivities}){
         setActivityNote(event.target.value);
     }
     function addActivity(){
-        console.log('add activity');
         setActivities(
             prev => ([...prev, 
                 {
