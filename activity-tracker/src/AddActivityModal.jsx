@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Modal, Button, Form } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Modal, Button, Form } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-function AddActivityModal({activitites, setActivities}){
+function AddActivityModal({setActivities}){
     const [activityName, setActivityName] = useState('');
     const [activityDay, setActivityDay] = useState();
     const [activityMonth, setActivityMonth] = useState();
