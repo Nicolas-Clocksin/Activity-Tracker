@@ -1,4 +1,36 @@
-.header{
+.activity-tracker-container{
   text-align: center;
   font-family: 'Times New Roman', Times, serif;
+  margin: 20px auto;
+  padding: 15px;
+  width: 50%;
+  border: 2px solid black;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+}
+.activity-row{
+ display: flex;
+ justify-content: space-between;
+ padding: 10px 10px;
+}
+.activity-item{
+  text-align: left;
+}
+.activity-name{
+  text-align: left;
+  margin-left: 10px;
+}
+.activity-time{
+  text-align: right;
+  margin-right: 10px;
+}
+.activity-notes {
+  font-size: 0.9em;
+  color: #a39d9d;
+  text-align: left;
+  padding-left: 20px; 
+}
+ul{
+  list-style-type: none;
 }

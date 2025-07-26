@@ -2,7 +2,7 @@ import ActivityList from './ActivityList';
 import Header from './Header'
 function App() {
   return(
-    <div>
+    <div className='activity-tracker-container'>
     <Header />
     <ActivityList />
     </div>
