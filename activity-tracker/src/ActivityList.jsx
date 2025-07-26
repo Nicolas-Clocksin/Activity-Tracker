@@ -26,15 +26,20 @@ function ActivityList(){
             <ul>
                 {
                 
-                activities.map((activity, index)=>
-                    <li className="activity-item" key={index}>
+                activities.map((activity, index) =>
+                    (activity.day === new Date().getDay() &&
+                     activity.month === new Date().getMonth() + 1 &&
+                     activity.year === new Date().getFullYear()) ? (
+                      <li className="activity-item" key={index}>
                         <div className='activity-row'>
-                            <span className='activity-name'>{activity.name} </span>
-                            <span className='activity-time'>{activity.time}</span>
+                          <span className='activity-name'>{activity.name} </span>
+                          <span className='activity-time'>{activity.time}</span>
                         </div>
                         <span className='activity-notes'>{activity.notes}</span>
-                    </li>
-                )}
+                      </li>
+                    ) : null
+                  )
+                }
             </ul>
         </div>
     )
