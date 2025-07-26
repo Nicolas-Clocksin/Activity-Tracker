@@ -5,48 +5,34 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 function EditActivityModal({ index, activities, setActivities, show, onClose}) {
     const [activityName, setActivityName] = useState('');
-    const [activityDay, setActivityDay] = useState();
-    const [activityMonth, setActivityMonth] = useState();
-    const [activityYear, setActivityYear] = useState();
     const [activityNote, setActivityNote] = useState('');
-    const [activityTime, setActivityTime] = useState();
-    const [activityDateTime, setActivityDateTime] = useState('');
+    const [activityDateTime, setActivityDateTime] = useState(null);
 
     useEffect(() => {
         if (show && activities[index]) {
           const activity = activities[index];
           setActivityName(activity.name);
-          setActivityDay(activity.day);
-          setActivityMonth(activity.month);
-          setActivityYear(activity.year);
           setActivityNote(activity.notes);
-          setActivityTime(activity.time);
-          
-          const [hourStr, minuteStr] = activity.time.split(':');
-          const hour = parseInt(hourStr, 10);
-          const minute = parseInt(minuteStr, 10);
-      
-        
-          const date = new Date(activity.year, activity.month-1, activity.day, hour, minute);
-      
-         
-          const formattedDateTime = date.toISOString().slice(0, 16); 
-          setActivityDateTime(formattedDateTime);
+          formatDate(activity.dateTime);
         }
       }, [show, index, activities]);
 
+    function formatDate(dateTime){
+      const date = new Date(dateTime);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const hours = String(date.getHours()).padStart(2, '0');
+      const minutes = String(date.getMinutes()).padStart(2, '0');
+      const formatted = `${year}-${month}-${day}T${hours}:${minutes}`;
+      setActivityDateTime(formatted);
+    }
     function updateActivityName(event){
-        setActivityName(event.target.value)
+        setActivityName(event.target.value);
      }
      function updateDateTime(event){
-         const dayTimeSubmitted = event.target.value;
-         const date = new Date(dayTimeSubmitted);
-         setActivityDay(date.getDate());
-         setActivityMonth(date.getMonth()+1);
-         setActivityYear(date.getFullYear());
-         const time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-         setActivityTime(time);
-         setActivityDateTime(event.target.value);
+         const date = new Date(event.target.value);
+         setActivityDateTime(date);
      }
      function updateNote(event){
          setActivityNote(event.target.value);
@@ -56,10 +42,7 @@ function EditActivityModal({ index, activities, setActivities, show, onClose}) {
                 if(i === index){
                     return {...activity, 
                         name: activityName,
-                        day: activityDay,
-                        month: activityMonth,
-                        year: activityYear,
-                        time: activityTime,
+                        dateTime: activityDateTime,
                         notes: activityNote
                     }
                }
@@ -80,15 +63,26 @@ function EditActivityModal({ index, activities, setActivities, show, onClose}) {
           <Form>
               <Form.Group className="mb-3" >
                   <Form.Label>Activity</Form.Label>
-                  <Form.Control type="text" value={activityName} onChange={(event)=>updateActivityName(event)} placeholder="Enter new activity" />
+                  <Form.Control 
+                    type="text"
+                    value={activityName} 
+                    onChange={(event)=>updateActivityName(event)} 
+                    placeholder="Enter new activity" 
+                    />
               </Form.Group>
 
               <Form.Group className="mb-3" >
                   <Form.Label>Date/Time</Form.Label>
-                  <Form.Control type="datetime-local" value={activityDateTime} onChange={(event)=> updateDateTime(event)}/>
+                  <Form.Control
+                    type="datetime-local"
+                    value={activityDateTime || ''}
+                    onChange={updateDateTime}
+                  />
+
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                  <Form.Control as="textarea" rows={3}
+                  <Form.Control as="textarea" 
+                                rows={3}
                                 value={activityNote}
                                 onChange={(event) => updateNote(event)} 
                                 placeholder="Add notes about the activity" />

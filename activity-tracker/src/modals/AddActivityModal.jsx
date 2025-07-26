@@ -4,11 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 function AddActivityModal({setActivities}){
     const [activityName, setActivityName] = useState('');
-    const [activityDay, setActivityDay] = useState();
-    const [activityMonth, setActivityMonth] = useState();
-    const [activityYear, setActivityYear] = useState();
     const [activityNote, setActivityNote] = useState('');
-    const [activityTime, setActivityTime] = useState();
     const [activityDateTime, setActivityDateTime] = useState('');
     const [show, setShow] = useState(false);
 
@@ -16,17 +12,9 @@ function AddActivityModal({setActivities}){
     const handleShow = () => setShow(true);
 
     function updateActivityName(event){
-       setActivityName(event.target.value)
+       setActivityName(event.target.value);
     }
     function updateDateTime(event){
-        const dayTimeSubmitted = event.target.value;
-        const date = new Date(dayTimeSubmitted);
-
-        setActivityDay(date.getDate());
-        setActivityMonth(date.getMonth()+1);
-        setActivityYear(date.getFullYear());
-        const time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        setActivityTime(time);
         setActivityDateTime(event.target.value);
     }
     function updateNote(event){
@@ -37,18 +25,15 @@ function AddActivityModal({setActivities}){
             prev => ([...prev, 
                 {
                     name: activityName,
-                    day: activityDay,
-                    time: activityTime,
-                    month: activityMonth,
-                    year: activityYear,
-                    notes: activityNote
+                    dateTime: activityDateTime,
+                    notes: activityNote,
                 }
             ])
         );
         setActivityName('');
         setActivityNote('');
-        setActivityTime('');
         setActivityDateTime('');
+        console.log('Added to list');
         handleClose();
     }
     return (

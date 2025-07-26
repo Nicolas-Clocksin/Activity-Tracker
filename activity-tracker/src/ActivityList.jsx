@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import AddActivityModal from './AddActivityModal';
+import AddActivityModal from './modals/AddActivityModal';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import EditActivityModal from './EditActivity';
+import EditActivityModal from './modals/EditActivityModal';
 function ActivityList({activities, setActivities}){
   const [editingIndex, setEditingIndex] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -20,25 +20,22 @@ function ActivityList({activities, setActivities}){
         <div>
             <ul>
                 {
-                
                 activities.map((activity, index) =>
-                    (activity.day === new Date().getDay() &&
-                     activity.month === new Date().getMonth() + 1 &&
-                     activity.year === new Date().getFullYear()) ? (
+                    
                       <li className="activity-item" key={index}>
                         <div className='activity-row'>
                           <span className='activity-name'>{activity.name} </span>
-                          <span className='activity-time'>{activity.time}</span>
+                          <span className='activity-time'>{new Date(activity.dateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                         </div>
                         <div className='activity-second-row'>
                           <span className='activity-notes'>{activity.notes}</span>
                           <div className='activity-icons'>
-                            <i onClick={()=> removeActivity(index)} class="bi bi-trash"></i>
-                            <i onClick={()=> handleEdit(index)} class="bi bi-pencil"></i>
+                            <i onClick={()=> removeActivity(index)} className="bi bi-trash"></i>
+                            <i onClick={()=> handleEdit(index)} className="bi bi-pencil"></i>
                           </div>
                         </div>
                       </li>
-                    ) : null
+                   
                   )
                 }
             </ul>
