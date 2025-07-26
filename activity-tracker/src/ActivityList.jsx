@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import AddActivityModal from './AddActivityModal';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 function ActivityList({activities, setActivities}){
+  function removeActivity(index){
+
+  }
     return(
         <div>
             <ul>
@@ -15,7 +19,13 @@ function ActivityList({activities, setActivities}){
                           <span className='activity-name'>{activity.name} </span>
                           <span className='activity-time'>{activity.time}</span>
                         </div>
-                        <span className='activity-notes'>{activity.notes}</span>
+                        <div className='activity-second-row'>
+                          <span className='activity-notes'>{activity.notes}</span>
+                          <div className='activity-icons'>
+                            <i class="bi bi-trash"></i>
+                            <i class="bi bi-pencil"></i>
+                          </div>
+                        </div>
                       </li>
                     ) : null
                   )

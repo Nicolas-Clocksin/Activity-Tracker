@@ -55,7 +55,7 @@ function AddActivityModal({activitites, setActivities}){
     return (
         <>
           <Button variant="primary" onClick={handleShow}>
-            Launch demo modal
+            Add Activity
           </Button>
     
           <Modal show={show} onHide={handleClose}>
@@ -84,7 +84,7 @@ function AddActivityModal({activitites, setActivities}){
                 Close
               </Button>
               <Button variant="primary" onClick={addActivity}>
-                Save Changes
+                Add Activity
               </Button>
             </Modal.Footer>
           </Modal>
