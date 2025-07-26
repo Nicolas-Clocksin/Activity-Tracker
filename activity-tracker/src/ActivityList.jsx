@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
 import AddActivityModal from './AddActivityModal';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 function ActivityList({activities, setActivities}){
   function removeActivity(index){
-
+    setActivities(prev => prev.filter((_, i) => i !== index));
   }
     return(
         <div>
@@ -22,7 +21,7 @@ function ActivityList({activities, setActivities}){
                         <div className='activity-second-row'>
                           <span className='activity-notes'>{activity.notes}</span>
                           <div className='activity-icons'>
-                            <i class="bi bi-trash"></i>
+                            <i onClick={()=> removeActivity(index)}class="bi bi-trash"></i>
                             <i class="bi bi-pencil"></i>
                           </div>
                         </div>
@@ -32,12 +31,6 @@ function ActivityList({activities, setActivities}){
                 }
             </ul>
             <AddActivityModal activities={activities} setActivities={setActivities}/>
-            {/* <div className='add-activity'>
-                <input type="text" placeholder='Name of activity' value={activityName} onChange={updateActivityName}/>
-                <input id="time" value={activityDateTime} onChange={(event)=> updateDateTime(event)} type="datetime-local"/>
-                <textarea value={activityNote} onChange={(event) => updateNote(event)} placeholder='Add Notes for Activity'></textarea>
-            <button onClick={addActivity}>Add Activity</button>
-            </div> */}
         </div>
     )
 }
