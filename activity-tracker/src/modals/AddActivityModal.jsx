@@ -20,21 +20,27 @@ function AddActivityModal({setActivities}){
     function updateNote(event){
         setActivityNote(event.target.value);
     }
-    function addActivity(){
-        setActivities(
-            prev => ([...prev, 
-                {
-                    name: activityName,
-                    dateTime: activityDateTime,
-                    notes: activityNote,
-                }
-            ])
-        );
-        setActivityName('');
-        setActivityNote('');
-        setActivityDateTime('');
-        console.log('Added to list');
-        handleClose();
+    function addActivity() {
+      const [date, time] = activityDateTime.split('T');
+      const [year, month, day] = date.split('-').map(Number);
+      const [hour, minute] = time.split(':').map(Number);
+    
+      const localDate = new Date(year, month - 1, day, hour, minute);
+      console.log(localDate);
+      setActivities(prev => [
+        ...prev,
+        {
+          name: activityName,
+          dateTime: localDate,
+          notes: activityNote,
+        }
+      ]);
+    
+      setActivityName('');
+      setActivityNote('');
+      setActivityDateTime('');
+      console.log('Added to list');
+      handleClose();
     }
     return (
         <>

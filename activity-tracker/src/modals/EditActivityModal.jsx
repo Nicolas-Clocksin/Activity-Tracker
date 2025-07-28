@@ -52,12 +52,18 @@ function EditActivityModal({ index, activities, setActivities, show, onClose}) {
         setActivities(updatedActivities);
         onClose();
      }
+     function closeOut(){
+      setActivityName('');
+      setActivityNote('');
+      setActivityDateTime(null);
+      onClose();
+     }
     return(
         <>
   
-        <Modal show={show} onHide={onClose}>
+        <Modal show={show} onHide={closeOut}>
           <Modal.Header closeButton>
-            <Modal.Title>Add a New Activity</Modal.Title>
+            <Modal.Title>Edit Activity: {activityName}</Modal.Title>
           </Modal.Header>
           <Form>
               <Form.Group className="mb-3" >
@@ -88,7 +94,7 @@ function EditActivityModal({ index, activities, setActivities, show, onClose}) {
               </Form.Group>
               </Form>
           <Modal.Footer>
-            <Button variant="secondary" onClick={onClose}>
+            <Button variant="secondary" onClick={closeOut}>
               Close
             </Button>
             <Button variant="primary" onClick={updateActivity}>
