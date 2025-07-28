@@ -30,7 +30,7 @@ function App() {
 }
 else{
   return(
-    <Login users={users} setSelectedUser={setSelectedUser}/>
+    <Login users={users} setUsers={setUsers} setSelectedUser={setSelectedUser}/>
   )
 }
 }

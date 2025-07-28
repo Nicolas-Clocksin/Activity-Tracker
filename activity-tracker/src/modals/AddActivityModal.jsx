@@ -35,11 +35,6 @@ function AddActivityModal({setActivities}){
           notes: activityNote,
         }
       ]);
-    
-      setActivityName('');
-      setActivityNote('');
-      setActivityDateTime('');
-      console.log('Added to list');
       handleClose();
     }
     return (

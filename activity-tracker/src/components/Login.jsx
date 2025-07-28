@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SignUpModal from '../modals/SignUpModal';
 
-function Login({users, setSelectedUser}){
+function Login({users, setUsers, setSelectedUser}){
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
 
@@ -41,6 +42,7 @@ function Login({users, setSelectedUser}){
                     />
             </Form.Group>
             <Button variant='primary' onClick={loginUser}>Login</Button>
+            <SignUpModal setUsers={setUsers}/>
       </Form>
     )
 }

@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ChangeDateModal({ selectedDate, setSelectedDate, onClose, show }) {
   const [dateChangeSelected, setDateChangeSelected] = useState('');
-
+  
   useEffect(() => {
     if (show && selectedDate) {
       const date = new Date(selectedDate);
