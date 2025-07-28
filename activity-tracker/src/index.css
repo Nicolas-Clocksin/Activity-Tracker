@@ -50,3 +50,6 @@ ul{
 i{
   padding: 5px;
 }
+.span:hover{
+  cursor: pointer;
+}

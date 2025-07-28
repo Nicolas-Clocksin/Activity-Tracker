@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Modal, Button, Form } from 'react-bootstrap'
+import Alerts from '../components/Alerts'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 function AddActivityModal({setActivities}){
@@ -27,16 +28,22 @@ function AddActivityModal({setActivities}){
     
       const localDate = new Date(year, month - 1, day, hour, minute);
       console.log(localDate);
-      setActivities(prev => [
-        ...prev,
-        {
-          name: activityName,
-          dateTime: localDate,
-          notes: activityNote,
-        }
-      ]);
-      handleClose();
+      if(activityName === '' || activityDateTime === ''){
+        console.log('was empty');
+      }
+      else{
+        setActivities(prev => [
+          ...prev,
+          {
+            name: activityName,
+            dateTime: localDate,
+            notes: activityNote,
+          }
+        ]);
+        handleClose();
+      }
     }
+     
     return (
         <>
           <Button variant="primary" onClick={handleShow}>
@@ -47,7 +54,7 @@ function AddActivityModal({setActivities}){
             <Modal.Header closeButton>
               <Modal.Title>Add a New Activity</Modal.Title>
             </Modal.Header>
-            <Form>
+            <Form className="p-4 shadow-sm">
                 <Form.Group className="mb-3" >
                     <Form.Label>Activity</Form.Label>
                     <Form.Control type="text" onChange={(event)=>updateActivityName(event)} placeholder="Enter new activity" />

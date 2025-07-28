@@ -7,7 +7,6 @@ function SignUpModal({setUsers}){
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     function updateUserEmail(event){
@@ -40,8 +39,8 @@ function SignUpModal({setUsers}){
             <Modal.Header closeButton>
                 <Modal.Title>Sign Up</Modal.Title>
             </Modal.Header>
-            <Form>
-                <Form.Group>
+            <Form className='p-4 shadow-sm'>
+                <Form.Group className='mb-3'>
                     <Form.Label>Email: </Form.Label>
                     <Form.Control
                         type='email'
@@ -49,7 +48,7 @@ function SignUpModal({setUsers}){
                         value={userEmail}
                     />
                 </Form.Group>
-                <Form.Group>
+                <Form.Group className='mb-4'>
                     <Form.Label>Password: </Form.Label>
                     <Form.Control
                         type='password'
@@ -58,13 +57,18 @@ function SignUpModal({setUsers}){
                         />
                 </Form.Group>
             </Form>
-          
-            <Button variant='secondary' onClick={handleClose}>
+          <Modal.Footer>
+            <Button 
+                variant='secondary' 
+                onClick={handleClose}>
                 Close
             </Button>
-            <Button variant='primary' onClick={createNewUser}>
+            <Button 
+                variant='primary' 
+                onClick={createNewUser}>
                 Sign Up
             </Button>
+            </Modal.Footer>
         </Modal>
         </>
     )

@@ -1,11 +1,20 @@
+import { Button } from "react-bootstrap";
 import ChangeDateModal from "../modals/ChangeDateModal"
 import React, {useState} from 'react'
 function Header({selectedDate, setSelectedDate}){
-    const currentDate = new Date(Date.now());
-    const currentYear = selectedDate.getFullYear();
-    const currentMonth = selectedDate.getMonth() + 1;
-    const currentDay = selectedDate.getDate();
+    const currentDate = new Date();
     const [showChangeDateModal, setShowChangeDataModal] = useState(false);
+    const isToday =
+    selectedDate.getFullYear() === currentDate.getFullYear() &&
+    selectedDate.getMonth() === currentDate.getMonth() &&
+    selectedDate.getDate() === currentDate.getDate();
+
+    const formattedDate = selectedDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
+
     function handleShowChangeDateModal(){
         setShowChangeDataModal(true);
     }
@@ -13,14 +22,14 @@ function Header({selectedDate, setSelectedDate}){
         setShowChangeDataModal(false);
       }
     return(
-    <header className="header">
-       
-        <h1>Activity Tracker</h1>
-        {selectedDate.getDate() == currentDate.getDate ? 
-         <p>Today is: {currentMonth} / {currentDay} / {currentYear} </p>
-       : <p> {currentMonth} / {currentDay} / {currentYear} </p>
-        }
-            <button onClick={()=> handleShowChangeDateModal()}>Change Date</button>
+        <header className="header text-center">
+        <h1 className="mb-3">Activity Tracker</h1>
+        <div className="mb-3">
+          <span id="span" className="me-3 fs-5" onClick={handleShowChangeDateModal}>
+            {isToday ? 'Today is: ' : ''}
+            <strong>{formattedDate}</strong>
+          </span>
+        </div>
         {
             showChangeDateModal && (
                 <ChangeDateModal selectedDate={selectedDate} setSelectedDate={setSelectedDate} show={true} onClose={handleCloseChangeDateModal}/>

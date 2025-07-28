@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Card, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SignUpModal from '../modals/SignUpModal';
 
@@ -23,27 +23,41 @@ function Login({users, setUsers, setSelectedUser}){
             }
         })
     }
-    return(
-      <Form>
-            <Form.Group className='mb-3'>
+    return (
+        <Container className="d-flex justify-content-center align-items-center vh-100">
+          <Card style={{ width: '100%', maxWidth: '400px' }} className="p-4 shadow-sm">
+            <h3 className="text-center mb-4">Login</h3>
+            <Form>
+              <Form.Group className="mb-3">
                 <Form.Label>Email Address</Form.Label>
                 <Form.Control
-                    type="email"
-                    value={userEmail}
-                    onChange={(event)=> updateEmail(event)}
-                    />
-            </Form.Group>
-            <Form.Group>
+                  type="email"
+                  placeholder="Enter your email"
+                  value={userEmail}
+                  onChange={updateEmail}
+                />
+              </Form.Group>
+    
+              <Form.Group className="mb-4">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
-                    type="password"
-                    value={userPassword}
-                    onChange={(event)=>updatePassword(event)}
-                    />
-            </Form.Group>
-            <Button variant='primary' onClick={loginUser}>Login</Button>
-            <SignUpModal setUsers={setUsers}/>
-      </Form>
-    )
+                  type="password"
+                  placeholder="Enter your password"
+                  value={userPassword}
+                  onChange={updatePassword}
+                />
+              </Form.Group>
+    
+              <div className="d-flex justify-content-between">
+              <SignUpModal setUsers={setUsers} />
+                <Button variant="success" onClick={loginUser}>
+                  Login
+                </Button>
+               
+              </div>
+            </Form>
+          </Card>
+        </Container>
+      );
 }
 export default Login

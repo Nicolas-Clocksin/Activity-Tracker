@@ -65,7 +65,7 @@ function EditActivityModal({ index, activities, setActivities, show, onClose}) {
           <Modal.Header closeButton>
             <Modal.Title>Edit Activity: {activityName}</Modal.Title>
           </Modal.Header>
-          <Form>
+          <Form className="p-4 shadow-sm">
               <Form.Group className="mb-3" >
                   <Form.Label>Activity</Form.Label>
                   <Form.Control 

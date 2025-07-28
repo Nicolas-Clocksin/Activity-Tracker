@@ -33,7 +33,7 @@ function ChangeDateModal({ selectedDate, setSelectedDate, onClose, show }) {
       <Modal.Header closeButton>
         <Modal.Title>Change Activity Date</Modal.Title>
       </Modal.Header>
-      <Form>
+      <Form className="p-4 shadow-sm">
         <Form.Group className="mb-3">
           <Form.Label>Select Date</Form.Label>
           <Form.Control
