@@ -31,8 +31,7 @@ function EditActivityModal({ index, activities, setActivities, show, onClose}) {
         setActivityName(event.target.value);
      }
      function updateDateTime(event){
-         const date = new Date(event.target.value);
-         setActivityDateTime(date);
+         setActivityDateTime(event.target.value);
      }
      function updateNote(event){
          setActivityNote(event.target.value);
